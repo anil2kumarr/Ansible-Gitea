@@ -1,0 +1,14 @@
+---
+- name: gitea configuration
+  template:
+     src: gitea.ini.j2
+     dest: /home/ansibleadm/gitea/gitea/conf/app.ini
+  become: yes
+
+
+- name: restart gitea
+  service:
+     name: gitea
+     enabled: yes
+     state: restarted
+

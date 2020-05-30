@@ -1,0 +1,32 @@
+---
+- name: create a docker network
+  docker_network:
+    name: gitea
+
+- name: postgres container
+  docker_container:
+    name: postgres
+    image: postgres:9.6
+    state: started
+    env:
+       POSTGRES_DB: 'gitea'
+       POSTGRES_USER: 'gitea'
+       POSTGRES_PASSWORD: 'Admin@123'
+    ports:
+     - 5432:5432
+    volumes:
+     - /etc/postgres:/var/lib/postgresql/data
+    networks:
+     - name: gitea
+
+- name: gitea container
+  docker_container:
+    name: gitea
+    image: gitea/gitea:1.8.3
+    ports:
+     - 3000:3000
+    volumes:
+     - /home/ansibleadm/gitea:/data
+    networks:
+     - name: gitea
+

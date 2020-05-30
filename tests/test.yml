@@ -1,0 +1,5 @@
+---
+- hosts: webservers
+  remote_user: ansibleadm
+  roles:
+    - /etc/ansible/docker

@@ -1,0 +1,15 @@
+[node3]
+172.31.19.26
+localhost
+[webservers]
+172.31.22.65
+[webservers:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[test]
+172.31.23.236
+
+[test:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+
